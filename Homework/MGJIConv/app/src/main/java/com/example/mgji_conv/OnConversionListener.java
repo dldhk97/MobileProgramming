@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
-public class OnConversionListener implements View.OnClickListener, EditText.OnEditorActionListener{
+public class OnConversionListener implements View.OnClickListener{
     private final String TAG = "OnConversionListener";
     private EditText userInput;
     private TextView resultView;
@@ -41,7 +41,7 @@ public class OnConversionListener implements View.OnClickListener, EditText.OnEd
     private String getUserInput() throws Exception{
         String mileStr = null;
         // try to get userInput;
-        mileStr = userInput.getText().toString();
+        mileStr = userInput.getText().toString().trim();
         if(mileStr == null){
             throw new MyException(ExceptionType.UNKNOWN, "텍스트박스에서 텍스트 가져오기 실패");
         }
@@ -66,19 +66,5 @@ public class OnConversionListener implements View.OnClickListener, EditText.OnEd
         String userInputStr = String.valueOf(userInput);
         String resultStr = String.valueOf(result.setScale(5, BigDecimal.ROUND_FLOOR));
         resultView.setText(userInputStr + " mile 은\n" + resultStr + " km 입니다.");
-    }
-
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN){
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                this.onClick(v);
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        return false;
     }
 }

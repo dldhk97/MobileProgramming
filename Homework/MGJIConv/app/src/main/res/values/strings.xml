@@ -4,6 +4,6 @@
     <string name="developer_id">20161185</string>
     <string name="editText_userInput_hint">마일(mile)을 입력해주세요.</string>
     <string name="button_conversion_text">OK</string>
-    <string name="textView_description_text">EditText 안에 mile을 입력하시고,\nOK 버튼을 누르면 km로 단위가 변환됩니다!\n약간의 오차가 존재합니다.\n\n입력 이후 엔터로도 변환이 가능합니다.</string>
+    <string name="textView_description_text">EditText 안에 mile을 입력하시고,\nOK 버튼을 누르면 km로 단위가 변환됩니다!\n약간의 오차가 존재합니다.</string>
 
 </resources>

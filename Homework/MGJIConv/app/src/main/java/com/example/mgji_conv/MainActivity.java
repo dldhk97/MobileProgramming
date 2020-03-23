@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         OnConversionListener listener = new OnConversionListener(userInput, resultView);
 
         conversionBtn.setOnClickListener(listener);         //For btn click
-        userInput.setOnEditorActionListener(listener);      //For Editor Enter
     }
 }
 

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MGJI-Rotater</string>
+    <string name="developer_name">지명근</string>
+    <string name="developer_id">20161185</string>
+    <string name="textView_input_text">INPUT</string>
+    <string name="editText_userInput_hint">Input here</string>
+    <string name="editText_userInput_default">0</string>
+    <string name="button_load_text">LOAD</string>
+    <string name="textView_result_deafult">00000000</string>
+    <string name="button_left_text">LEFT</string>
+    <string name="button_right_text">RIGHT</string>
+</resources>

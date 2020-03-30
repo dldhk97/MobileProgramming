@@ -1,0 +1,2 @@
+rootProject.name='MGJI-Rotater'
+include ':app'

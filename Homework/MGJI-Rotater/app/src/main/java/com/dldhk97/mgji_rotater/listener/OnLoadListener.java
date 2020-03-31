@@ -29,17 +29,29 @@ public class OnLoadListener implements View.OnClickListener{
                 return;
             }
 
+            if(decimalStr.length() > 3){
+                throw new MyException(ExceptionType.OUT_OF_RANGE ,"입력값이 범위를 벗어났습니다.");
+            }
+
             if(!matchPattern(decimalStr)){
                 throw new MyException(ExceptionType.REGEX_NOT_MATCH ,"유효하지 않은 입력값입니다!");
             }
 
-            int decimal = Integer.parseInt(decimalStr);
+            int decimal;
+            try{
+                decimal = Integer.parseInt(decimalStr);
+            }
+            catch(NumberFormatException nfe){
+                throw new MyException(ExceptionType.PARSEINT_FAILED, "문자열을 숫자로 변환하는데 실패했습니다!");
+            }
+
             if(decimal > 255 || decimal < 0){
                 throw new MyException(ExceptionType.OUT_OF_RANGE ,"입력값이 범위를 벗어났습니다.");
             }
 
             Converter converter = new Converter();
             String binary = converter.toBinary(decimal);
+
             resultView.setText(binary);
             UIHandler.getInstance().showToast("LOAD 완료");
         }

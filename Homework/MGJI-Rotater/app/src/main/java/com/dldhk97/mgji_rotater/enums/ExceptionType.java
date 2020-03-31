@@ -6,5 +6,6 @@ public enum ExceptionType{
     CONVERSION_FAILED,
     UNKNOWN_DIRECTION,
     ROTATION_FAILED,
+    PARSEINT_FAILED,
     UNKNOWN;
 }

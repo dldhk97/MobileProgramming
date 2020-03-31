@@ -12,8 +12,8 @@ import com.dldhk97.mgji_rotater.logic.Converter;
 import java.util.regex.Pattern;
 
 public class OnLoadListener implements View.OnClickListener{
-    EditText userInput;
-    TextView resultView;
+    private EditText userInput;
+    private TextView resultView;
 
     public OnLoadListener(EditText userInput, TextView resultView){
         this.userInput = userInput;
@@ -29,10 +29,6 @@ public class OnLoadListener implements View.OnClickListener{
                 return;
             }
 
-            if(decimalStr.length() > 3){
-                throw new MyException(ExceptionType.OUT_OF_RANGE ,"입력값이 범위를 벗어났습니다.");
-            }
-
             if(!matchPattern(decimalStr)){
                 throw new MyException(ExceptionType.REGEX_NOT_MATCH ,"유효하지 않은 입력값입니다!");
             }
@@ -42,7 +38,7 @@ public class OnLoadListener implements View.OnClickListener{
                 decimal = Integer.parseInt(decimalStr);
             }
             catch(NumberFormatException nfe){
-                throw new MyException(ExceptionType.PARSEINT_FAILED, "문자열을 숫자로 변환하는데 실패했습니다!");
+                throw new MyException(ExceptionType.PARSEINT_FAILED, "문자열을 숫자로 변환하는데 실패했습니다!\n입력값이 너무 깁니다!");
             }
 
             if(decimal > 255 || decimal < 0){
@@ -63,9 +59,6 @@ public class OnLoadListener implements View.OnClickListener{
 
     private boolean matchPattern(String decimalStr){
         Pattern numPattern = Pattern.compile("^[0-9]+$");
-        if(numPattern.matcher(decimalStr).find()){
-            return true;
-        }
-        return false;
+        return numPattern.matcher(decimalStr).find();
     }
 }

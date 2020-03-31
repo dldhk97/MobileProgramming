@@ -11,12 +11,10 @@ import com.dldhk97.mgji_rotater.enums.ExceptionType;
 import com.dldhk97.mgji_rotater.logic.Rotater;
 
 public class OnRotateListener implements View.OnClickListener {
-    private EditText userInput;
     private TextView resultView;
     private Direction direction;
 
-    public OnRotateListener(EditText userInput, TextView resultView, Direction direction){
-        this.userInput = userInput;
+    public OnRotateListener(TextView resultView, Direction direction){
         this.resultView = resultView;
         this.direction = direction;
     }

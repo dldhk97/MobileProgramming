@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Button rightBtn = findViewById(R.id.button_right);
 
         loadBtn.setOnClickListener(new OnLoadListener(userInput, resultView));
-        leftBtn.setOnClickListener(new OnRotateListener(userInput, resultView, Direction.LEFT));
-        rightBtn.setOnClickListener(new OnRotateListener(userInput, resultView, Direction.RIGHT));
+        leftBtn.setOnClickListener(new OnRotateListener(resultView, Direction.LEFT));
+        rightBtn.setOnClickListener(new OnRotateListener(resultView, Direction.RIGHT));
     }
 }

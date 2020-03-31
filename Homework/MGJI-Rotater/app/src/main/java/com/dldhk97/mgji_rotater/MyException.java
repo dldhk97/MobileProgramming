@@ -3,13 +3,11 @@ package com.dldhk97.mgji_rotater;
 import com.dldhk97.mgji_rotater.enums.ExceptionType;
 
 public class MyException extends Exception{
-    ExceptionType type;
-    String msg;
+    private ExceptionType type;
 
     public MyException(ExceptionType type, String msg){
         super(msg);
         this.type = type;
-        this.msg = msg;
     }
 
     @Override

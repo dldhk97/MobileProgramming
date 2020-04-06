@@ -63,6 +63,12 @@ public class BinaryConverter {
             // 3비트로 표현하기 위해 변환
             int binaryInt = Integer.parseInt(binaryStr);
             binaryStr = String.format("%03d", binaryInt);
+
+            // 3비트 이상이면?
+            if(binaryStr.length() > 3){
+                return binaryStr.substring(binaryStr.length() - BIT_LENGTH, binaryStr.length());
+            }
+
             return binaryStr;
         }
         catch(Exception e){

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MGJI-Adder</string>
+    <string name="developer_name">지명근</string>
+    <string name="developer_id">20161185</string>
+    <string name="button_binary_default">0</string>
+    <string name="number_decimal_default">0</string>
+    <string name="result_binary_default">000</string>
+    <string name="textView_plus_text">+</string>
+</resources>

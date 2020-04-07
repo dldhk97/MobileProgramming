@@ -4,7 +4,6 @@ import com.dldhk97.mgji_adder.MyException;
 import com.dldhk97.mgji_adder.enums.ExceptionType;
 
 public class BinaryConverter {
-    private final static int BIT_LENGTH = 3;
 
     // 3비트 2의보수 문자열을 10진수 int형으로 반환
     public int toDecimal(String string) throws Exception{
@@ -41,13 +40,20 @@ public class BinaryConverter {
         Calculator calc = new Calculator();
         try{
             String binaryStr;
+            int bitLength = 3;
 
             //음수일 때 처리
             if(decimal < 0){
+
+                // -4보다 작으면 비트수가 4개가 됨.
+                if(decimal < -4){
+                    bitLength = 4;
+                }
+
                 //임시로 양수로 바꿔서 2진수 얻어낸다.
                 binaryStr = Integer.toBinaryString(-decimal);
-                //2진수로 바꿨을 때 3자리까지 안되면 앞에 0 채워줌
-                for(int i = binaryStr.length() ; i < BIT_LENGTH ; i++){
+                //2진수로 바꿨을 때 앞에 0 채워줌
+                for(int i = binaryStr.length() ; i < bitLength ; i++){
                     binaryStr = '0' + binaryStr;
                 }
                 // 0 과 1 반전
@@ -66,7 +72,7 @@ public class BinaryConverter {
 
             // 3비트 이상이면?
             if(binaryStr.length() > 3){
-                return binaryStr.substring(binaryStr.length() - BIT_LENGTH, binaryStr.length());
+                return binaryStr.substring(binaryStr.length() - bitLength, binaryStr.length());
             }
 
             return binaryStr;

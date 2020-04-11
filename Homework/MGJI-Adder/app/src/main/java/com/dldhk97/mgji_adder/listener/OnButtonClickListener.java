@@ -61,7 +61,9 @@ public class OnButtonClickListener implements View.OnClickListener{
             textView_decimal_result.setText(String.valueOf(result));
 
             // 왼쪽 결과에 2진수 표시
-            textView_binary_result.setText(converter.toBinary(result));
+            String resultBinary = converter.toBinary(result);
+            resultBinary = resultBinary.substring(resultBinary.length() - 3);
+            textView_binary_result.setText(resultBinary);
         }
         catch(Exception e){
             UIHandler.getInstance().showAlert(e.getMessage());

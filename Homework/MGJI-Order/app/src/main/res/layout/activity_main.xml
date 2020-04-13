@@ -43,12 +43,12 @@
         app:layout_constraintVertical_bias="0.41000003">
 
         <TextView
-            android:id="@+id/button_menu1"
+            android:id="@+id/textView_menu1"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@color/button_default_color"
             android:gravity="center"
-            android:text="@string/button_menu1_text"
+            android:text="@string/menu1_text"
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -56,32 +56,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/button_menu2"
+            android:id="@+id/textView_menu2"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:background="@color/button_default_color"
             android:gravity="center"
-            android:text="@string/button_menu2_text"
+            android:text="@string/menu2_text"
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_menu1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_menu1" />
 
         <TextView
-            android:id="@+id/button_menu3"
+            android:id="@+id/textView_menu3"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:background="@color/button_default_color"
             android:gravity="center"
-            android:text="@string/button_menu3_text"
+            android:text="@string/menu3_text"
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_menu2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_menu2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,13 +109,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/button_menu1_count"
+            android:id="@+id/textView_menu1_count"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:background="@color/button_default_color"
             android:gravity="center"
-            android:text="@string/button_menu1_count_default"
+            android:text="@string/textView_menu1_count_default"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/button_menu1_minus"
@@ -131,7 +131,7 @@
             android:text="@string/button_menu_plus_text"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/button_menu1_count"
+            app:layout_constraintStart_toEndOf="@+id/textView_menu1_count"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -145,7 +145,7 @@
             android:text="@string/button_menu_plus_text"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/button_menu2_count"
+            app:layout_constraintStart_toEndOf="@+id/textView_menu2_count"
             app:layout_constraintTop_toBottomOf="@+id/button_menu1_plus" />
 
         <Button
@@ -159,7 +159,7 @@
             android:text="@string/button_menu_plus_text"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/button_menu3_count"
+            app:layout_constraintStart_toEndOf="@+id/textView_menu3_count"
             app:layout_constraintTop_toBottomOf="@+id/button_menu2_plus" />
 
         <Button
@@ -176,7 +176,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button_menu1_minus" />
 
         <TextView
-            android:id="@+id/button_menu2_count"
+            android:id="@+id/textView_menu2_count"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -184,11 +184,11 @@
             android:background="@color/button_default_color"
             android:ems="6"
             android:gravity="center"
-            android:text="@string/button_menu2_count_default"
+            android:text="@string/textView_menu2_count_default"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/button_menu2_minus"
-            app:layout_constraintTop_toBottomOf="@+id/button_menu1_count" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_menu1_count" />
 
         <Button
             android:id="@+id/button_menu3_minus"
@@ -204,7 +204,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button_menu2_minus" />
 
         <TextView
-            android:id="@+id/button_menu3_count"
+            android:id="@+id/textView_menu3_count"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -212,11 +212,11 @@
             android:background="@color/button_default_color"
             android:ems="6"
             android:gravity="center"
-            android:text="@string/button_menu3_count_default"
+            android:text="@string/textView_menu3_count_default"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/button_menu3_minus"
-            app:layout_constraintTop_toBottomOf="@+id/button_menu2_count" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_menu2_count" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -289,46 +289,46 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView_menu_description"
+        android:id="@+id/textView_menu_log1_content"
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@color/textView_default_color"
-        android:text="@string/textView_menu_description_default"
+        android:text="@string/textView_menu_log1_content"
         android:textAlignment="textEnd"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView_menu_log_header"
+        app:layout_constraintEnd_toStartOf="@+id/textView_menu_log2_header"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_menu_confirm" />
 
     <TextView
-        android:id="@+id/textView_menu_log"
+        android:id="@+id/textView_menu_log2_content"
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:background="@color/textView_default_color"
-        android:text="@string/textView_menu_log_content_default"
+        android:text="@string/textView_menu_log2_content_default"
         android:textAlignment="textEnd"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView_menu_log_header"
-        app:layout_constraintStart_toStartOf="@+id/textView_menu_log_header"
-        app:layout_constraintTop_toBottomOf="@+id/textView_menu_log_header" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_menu_log2_header"
+        app:layout_constraintStart_toStartOf="@+id/textView_menu_log2_header"
+        app:layout_constraintTop_toBottomOf="@+id/textView_menu_log2_header" />
 
     <TextView
-        android:id="@+id/textView_menu_log_header"
+        android:id="@+id/textView_menu_log2_header"
         android:layout_width="150dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:background="@color/textView_default_color"
-        android:text="@string/textView_menu_log_header"
+        android:text="@string/textView_menu_log2_header"
         android:textAlignment="textEnd"
         android:textColor="@color/textView_header_color"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView_menu_description"
+        app:layout_constraintStart_toEndOf="@+id/textView_menu_log1_content"
         app:layout_constraintTop_toBottomOf="@+id/button_menu_confirm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

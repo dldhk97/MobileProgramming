@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="menu1_price">5000</integer>
+    <integer name="menu2_price">2000</integer>
+    <integer name="menu3_price">8000</integer>
+</resources>

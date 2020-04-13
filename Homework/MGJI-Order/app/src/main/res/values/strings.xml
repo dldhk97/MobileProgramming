@@ -3,16 +3,16 @@
     <string name="developer_name">지명근</string>
     <string name="developer_id">20161185</string>
 
-    <string name="button_menu1_text">돼지국밥</string>
-    <string name="button_menu2_text">라면</string>
-    <string name="button_menu3_text">낚지볶음</string>
+    <string name="menu1_text">돼지국밥</string>
+    <string name="menu2_text">라면</string>
+    <string name="menu3_text">낚지볶음</string>
 
     <string name="button_menu_minus_text">-</string>
     <string name="button_menu_plus_text">+</string>
 
-    <string name="button_menu1_count_default">1</string>
-    <string name="button_menu2_count_default">2</string>
-    <string name="button_menu3_count_default">3</string>
+    <string name="textView_menu1_count_default">1</string>
+    <string name="textView_menu2_count_default">2</string>
+    <string name="textView_menu3_count_default">2</string>
 
     <string name="button_menu_confirm_text">주문 확인</string>
 
@@ -20,8 +20,8 @@
     <string name="textView_menu2_priceView_default">4,000</string>
     <string name="textView_menu3_priceView_default">16,000</string>
 
-    <string name="textView_menu_description_default">돼지국밥 1개 5,000원\n라면 2개 4,000원\n낙지볶음 2개 16,000원\n계 25,000원</string>
-    <string name="textView_menu_log_header">지금까지 매출 상황</string>
-    <string name="textView_menu_log_content_default">돼지국밥 10개\n라면 20개\n낙지볶음 20개\n총계 25,000원</string>
+    <string name="textView_menu_log1_content">돼지국밥 1개 5,000원\n라면 2개 4,000원\n낙지볶음 2개 16,000원\n계 25,000원</string>
+    <string name="textView_menu_log2_header">지금까지 매출 상황</string>
+    <string name="textView_menu_log2_content_default">돼지국밥 10개\n라면 20개\n낙지볶음 20개\n총계 25,000원</string>
 
 </resources>

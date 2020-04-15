@@ -1,6 +1,7 @@
 package com.dldhk97.mgji_adder.logic;
 
 import com.dldhk97.mgji_adder.MyException;
+import com.dldhk97.mgji_adder.UIHandler;
 import com.dldhk97.mgji_adder.enums.ExceptionType;
 
 public class BinaryConverter {
@@ -40,7 +41,9 @@ public class BinaryConverter {
         Calculator calc = new Calculator();
         try{
             String binaryStr;
+            String notOverflowed = "";
             int bitLength = 3;
+            boolean isOverflowed = false;
 
             //음수일 때 처리
             if(decimal < 0){
@@ -64,6 +67,10 @@ public class BinaryConverter {
             else{
                 // 양수면 바로 2진수로 바꾼다
                 binaryStr = Integer.toBinaryString(decimal);
+                if(decimal > 4){
+                    isOverflowed = true;
+                    notOverflowed = "0" + binaryStr;
+                }
             }
 
             // 3비트로 표현하기 위해 변환
@@ -72,7 +79,13 @@ public class BinaryConverter {
 
             // 3비트 이상이면?
             if(binaryStr.length() > 3){
-                return binaryStr.substring(binaryStr.length() - bitLength, binaryStr.length());
+                notOverflowed = binaryStr;
+                binaryStr = binaryStr.substring(binaryStr.length() - bitLength, binaryStr.length());
+                isOverflowed = true;
+            }
+
+            if(isOverflowed){
+                UIHandler.getInstance().showToast("오버플로우가 발생했습니다.\n-4 ~ 3까지의 숫자만 표현가능합니다.\n" + decimal + "는(은) 4비트로 " + notOverflowed + " 입니다.");
             }
 
             return binaryStr;

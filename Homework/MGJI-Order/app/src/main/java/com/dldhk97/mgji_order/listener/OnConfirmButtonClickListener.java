@@ -34,6 +34,11 @@ public class OnConfirmButtonClickListener implements View.OnClickListener{
             int menu2Count = Integer.parseInt(textView_menu2_count.getText().toString());
             int menu3Count = Integer.parseInt(textView_menu3_count.getText().toString());
 
+            if(menu1Count == 0 && menu2Count == 0 && menu3Count == 0){
+                UIHandler.getInstance().showToast("주문할 음식이 없습니다.");
+                return;
+            }
+
             logger.update(MenuType.MENU1, menu1Count);
             logger.update(MenuType.MENU2, menu2Count);
             logger.update(MenuType.MENU3, menu3Count);

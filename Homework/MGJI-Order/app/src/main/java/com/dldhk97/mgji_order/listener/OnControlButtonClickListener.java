@@ -9,7 +9,7 @@ import com.dldhk97.mgji_order.UIHandler;
 import com.dldhk97.mgji_order.enums.Sign;
 
 public class OnControlButtonClickListener implements View.OnClickListener{
-    private final static int MINIMUM_COUNT = 1;
+    private final static int MINIMUM_COUNT = 0;
     private final static int MAXIMUM_COUNT = 5;
 
     private Sign sign;

@@ -5,4 +5,11 @@
         <item>교직원식당</item>
         <item>분식당</item>
     </string-array>
+
+    <string-array name="mealTimeType">
+        <item>조식</item>
+        <item>중식</item>
+        <item>석식</item>
+        <item>분식</item>
+    </string-array>
 </resources>

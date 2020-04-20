@@ -1,4 +1,4 @@
-package com.dldhk97.mgji_recy.listener;
+package com.dldhk97.mgji_recy.listeners;
 
 import android.view.View;
 

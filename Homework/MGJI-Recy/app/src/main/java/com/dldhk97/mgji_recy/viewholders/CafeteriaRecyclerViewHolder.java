@@ -29,7 +29,7 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(Menu menu)throws Exception{
         // 아이콘 설정
-        //            imageView_icon.setImageResource(R.id.);
+        imageView_icon.setImageResource(menu.getImageId());
 
         // 날짜 설정
         SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");

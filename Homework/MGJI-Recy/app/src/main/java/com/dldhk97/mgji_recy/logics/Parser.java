@@ -3,6 +3,7 @@ package com.dldhk97.mgji_recy.logics;
 import android.util.Log;
 
 import com.dldhk97.mgji_recy.MyException;
+import com.dldhk97.mgji_recy.R;
 import com.dldhk97.mgji_recy.enums.CafeteriaType;
 import com.dldhk97.mgji_recy.enums.ExceptionType;
 import com.dldhk97.mgji_recy.enums.MealTimeType;
@@ -21,6 +22,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Random;
 
 public class Parser{
     private ArrayList<Menu> resultArr;
@@ -56,11 +58,6 @@ public class Parser{
         }
 
         if(resultArr == null){
-//            Menu empty = new Menu(date, cafeteriaType, MealTimeType.UNKNOWN);
-//            empty.addFood("등록된 메뉴가 없습니다.");
-//            resultArr = new ArrayList<>();
-//            resultArr.add(empty);
-//            return resultArr;
             return new ArrayList<>();
         }
 
@@ -152,6 +149,14 @@ class ParseThread implements Runnable{
                     currentMenu.addFood(str);
                 }
 
+                // 파싱된 메뉴 있을때만 사진 설정
+                if(currentMenu.getFoods().size() > 0){
+                    // 사진 대충 설정
+                    int offset = new Random().nextInt(6);
+                    int imgId = R.drawable.food0 + offset;
+                    currentMenu.setImageId(imgId);
+                }
+
                 //전달할 배열에 추가
                 resultArr.add(currentMenu);
                 cnt++;
@@ -161,7 +166,7 @@ class ParseThread implements Runnable{
             parseCompleteListener.onParseComplete(resultArr);
         }
         catch(Exception e){
-            Log.d("[ParseThread.run]", e.getMessage());
+            Log.d("[ParseThread.run]", "WHAT?\n" + e.getMessage());
         }
 
     }

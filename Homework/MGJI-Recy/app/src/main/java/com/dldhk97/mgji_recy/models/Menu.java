@@ -11,10 +11,11 @@ import java.util.Calendar;
 
 // 어떤 날의 조식/중식/석식 중 하나의 식단. 여러 음식을 포함함.
 public class Menu {
-    Calendar date;                      // 날짜
-    CafeteriaType cafeteriaType;    // 식당
-    MealTimeType mealTimeType;      // 조식/중식/석식
-    ArrayList<String> foods;        // 음식 리스트
+    private Calendar date;                      // 날짜
+    private CafeteriaType cafeteriaType;    // 식당
+    private MealTimeType mealTimeType;      // 조식/중식/석식
+    private ArrayList<String> foods;        // 음식 리스트
+    private int imageId;
 
     public Menu(Calendar date, CafeteriaType cafeteriaType, MealTimeType mealTimeType){
         this.date = date;
@@ -45,6 +46,14 @@ public class Menu {
 
     public ArrayList<String> getFoods(){
         return foods;
+    }
+
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
+    }
+
+    public int getImageId() {
+        return imageId;
     }
 
     public int getCount(){

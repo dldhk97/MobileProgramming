@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cafeteriaType">
+        <item>학생식당</item>
+        <item>교직원식당</item>
+        <item>분식당</item>
+    </string-array>
+</resources>

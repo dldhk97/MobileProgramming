@@ -10,6 +10,12 @@
         <item>조식</item>
         <item>중식</item>
         <item>석식</item>
-        <item>분식</item>
+        <item>일품요리</item>
+    </string-array>
+
+    <string-array name="urls">
+        <item>https://kumoh.ac.kr/ko/restaurant01.do?</item>        <!-- 학생식당 -->
+        <item>https://kumoh.ac.kr/ko/restaurant02.do?</item>        <!-- 교직원식당 -->
+        <item>https://kumoh.ac.kr/ko/restaurant04.do?</item>        <!-- 분식당 -->
     </string-array>
 </resources>

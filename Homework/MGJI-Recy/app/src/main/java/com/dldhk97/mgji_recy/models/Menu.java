@@ -7,23 +7,23 @@ import com.dldhk97.mgji_recy.enums.CafeteriaType;
 import com.dldhk97.mgji_recy.enums.MealTimeType;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
-// 어떤 날의 조식/중식/석식 중 하나의 식단
+// 어떤 날의 조식/중식/석식 중 하나의 식단. 여러 음식을 포함함.
 public class Menu {
-    Date date;                      // 날짜
+    Calendar date;                      // 날짜
     CafeteriaType cafeteriaType;    // 식당
     MealTimeType mealTimeType;      // 조식/중식/석식
     ArrayList<String> foods;        // 음식 리스트
 
-    public Menu(Date date, CafeteriaType cafeteriaType, MealTimeType mealTimeType){
+    public Menu(Calendar date, CafeteriaType cafeteriaType, MealTimeType mealTimeType){
         this.date = date;
         this.cafeteriaType = cafeteriaType;
         this.mealTimeType = mealTimeType;
         foods = new ArrayList<>();
     }
 
-    public Date getDate(){
+    public Calendar getDate(){
         return this.date;
     }
 
@@ -55,6 +55,8 @@ public class Menu {
             for(String s : foods){
                 sb.append(s + " ");
             }
+
+            //ETC 추가할것
             return sb.toString();
         }
         catch(Exception e){

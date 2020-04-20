@@ -11,6 +11,8 @@ import com.dldhk97.mgji_recy.R;
 import com.dldhk97.mgji_recy.adapters.CafeteriaRecyclerAdapter;
 import com.dldhk97.mgji_recy.models.Menu;
 
+import java.text.SimpleDateFormat;
+
 public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
     private ImageView imageView_icon;
     private TextView textView_date;
@@ -27,7 +29,10 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(Menu menu)throws Exception{
         //            imageView_icon.setImageResource(R.id.);                       // 아이콘 설정
-        textView_date.setText(menu.getDate().toString());               // 날짜 설정
+        // 날짜 설정
+        SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");
+        String dateStr = format.format(menu.getDate().getTime());
+        textView_date.setText(dateStr);               // 날짜 설정
         textView_mealTime.setText(menu.getMealTimeType().toString());   // 식사시간 설정
         textView_menus.setText("음식1");
 

@@ -16,8 +16,8 @@ import com.dldhk97.mgji_recy.listeners.OnCafeteriaTypeSelectedListener;
 import com.dldhk97.mgji_recy.listeners.OnRefreshListener;
 
 public class MainActivity extends AppCompatActivity {
-    public static Context _Instance;
-    private CafeteriaRecyclerAdapter recyclerAdapter;
+    public static MainActivity _Instance;
+    public CafeteriaRecyclerAdapter recyclerAdapter;
     private DataController dataController;
 
     @Override
@@ -36,11 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 데이터 추출 및 리스트에 삽입
         dataController.updateData(CafeteriaType.STUDENT);
-
-        recyclerAdapter.notifyDataSetChanged();
     }
 
-    public static Context getInstance(){
+    public static MainActivity getInstance(){
         if(_Instance != null)
             return _Instance;
         return null;

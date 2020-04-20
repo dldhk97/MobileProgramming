@@ -39,22 +39,23 @@ public class DataController {
 
     public void updateData(CafeteriaType cafeteriaType){
         try{
-            ArrayList<Menu> targetArray;
+            // 식당 유형에 맞게 배열 선택
             switch (cafeteriaType){
                 case STUDENT:
-                    targetArray = studentMenus;
+                    studentMenus = new Parser().parse(cafeteriaType);
                     break;
                 case STAFF:
-                    targetArray = staffMenus;
+                    staffMenus = new Parser().parse(cafeteriaType);
                     break;
                 case SNACKBAR:
-                    targetArray = snackbarMenus;
+                    snackbarMenus = new Parser().parse(cafeteriaType);
                     break;
                 default:
                     throw new MyException(ExceptionType.UNKNOWN_CAFETERIA_TYPE, "Unknown current cafeteria type");
             }
-            Parser parser = new Parser();
-//            targetArray = parser.parse(cafeteriaType);
+
+            //데이터 변했다고 알려줌
+            MainActivity.getInstance().recyclerAdapter.notifyDataSetChanged();
         }
         catch(Exception e){
             UIHandler.getInstance().showToast("[DataController.updateData]\n" + e.getMessage());

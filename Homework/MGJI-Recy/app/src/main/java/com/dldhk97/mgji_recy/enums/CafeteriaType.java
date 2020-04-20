@@ -23,7 +23,20 @@ public enum CafeteriaType {
         }
     }
 
-    public static String[] getStringArray(){
+    public String getURL(){
+        switch(this){
+            case STUDENT:
+                return MainActivity.getInstance().getResources().getStringArray(R.array.urls)[0];
+            case STAFF:
+                return MainActivity.getInstance().getResources().getStringArray(R.array.urls)[1];
+            case SNACKBAR:
+                return MainActivity.getInstance().getResources().getStringArray(R.array.urls)[2];
+            default:
+                return "";
+        }
+    }
+
+   public static String[] getStringArray(){
         return MainActivity.getInstance().getResources().getStringArray(R.array.cafeteriaType);
     }
 }

@@ -18,4 +18,5 @@
         </activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />      <!-- 인터넷 연결을 위함 -->
 </manifest>

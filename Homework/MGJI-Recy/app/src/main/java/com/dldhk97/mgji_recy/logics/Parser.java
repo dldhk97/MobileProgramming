@@ -150,7 +150,7 @@ class ParseThread implements Runnable{
                 }
 
                 // 파싱된 메뉴 있을때만 사진 설정
-                if(currentMenu.getFoods().size() > 0){
+                if(currentMenu.getFoods().size() > 0 && !currentMenu.getFood(0).contains("식당 운영 없음")){
                     // 사진 대충 설정
                     int offset = new Random().nextInt(6);
                     int imgId = R.drawable.food0 + offset;

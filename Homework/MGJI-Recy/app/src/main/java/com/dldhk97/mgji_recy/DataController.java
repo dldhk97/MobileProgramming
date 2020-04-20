@@ -18,7 +18,7 @@ public class DataController {
     public CafeteriaType currentCafeteriaType = CafeteriaType.STUDENT;
 
     private int moreOffset = -7;
-    private final int MAX_OFFSET = -56;
+    private final int MAX_OFFSET = -70;
 
     // 싱글톤
     public static DataController getInstance(){
@@ -85,6 +85,8 @@ public class DataController {
             }
 
             // 저번주거 불러옴
+            more();
+            // 저저번주거 불러옴
             more();
 
             //데이터 변했다고 알려줌

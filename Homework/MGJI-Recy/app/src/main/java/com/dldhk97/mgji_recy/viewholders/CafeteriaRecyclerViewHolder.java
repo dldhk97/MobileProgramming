@@ -8,16 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dldhk97.mgji_recy.R;
+import com.dldhk97.mgji_recy.UIHandler;
 import com.dldhk97.mgji_recy.adapters.CafeteriaRecyclerAdapter;
 import com.dldhk97.mgji_recy.models.Menu;
 
 import java.text.SimpleDateFormat;
 
-public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
+public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ImageView imageView_icon;
     private TextView textView_date;
     private TextView textView_mealTime;
     private TextView textView_menus;
+
+    private Menu menu;
 
     public CafeteriaRecyclerViewHolder(@NonNull View itemView, CafeteriaRecyclerAdapter adapter) {
         super(itemView);
@@ -25,11 +28,19 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
         this.textView_date = itemView.findViewById(R.id.textView_date);
         this.textView_mealTime = itemView.findViewById(R.id.textView_mealTime);
         this.textView_menus = itemView.findViewById(R.id.textView_menus);
+
+        // 클릭 리스너 설정
+        itemView.setOnClickListener(this);
     }
 
     public void onBind(Menu menu)throws Exception{
+        this.menu = menu;
         // 아이콘 설정
-        imageView_icon.setImageResource(menu.getImageId());
+        int imageId = menu.getImageId();
+        if(imageId == 0){
+            imageId = R.drawable.unknown;
+        }
+        imageView_icon.setImageResource(imageId);
 
         // 날짜 설정
         SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");
@@ -53,5 +64,13 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
         }
         textView_menus.setText(foodsStr.toString());
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        int pos = getLayoutPosition();
+        if(pos != RecyclerView.NO_POSITION){
+            UIHandler.getInstance().showAlert(menu.toString());
+        }
     }
 }

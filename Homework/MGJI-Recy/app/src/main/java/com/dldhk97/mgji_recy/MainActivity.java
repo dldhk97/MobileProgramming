@@ -28,10 +28,7 @@ public class MainActivity extends AppCompatActivity {
         _Instance = this;
         UIHandler uh = new UIHandler(this);
 
-        // UI 컴포넌트 설정
-        setupListeners();
-        setupSpinner();
-        setupRecyclerView();
+        setupUiComponents();
     }
 
     public static MainActivity getInstance(){
@@ -40,8 +37,20 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    // UI 컴포넌트 설정
+    public void setupUiComponents(){
+        try{
+            setupListeners();
+            setupSpinner();
+            setupRecyclerView();
+        }
+            catch(Exception e){
+            UIHandler.getInstance().showAlert( "MainActivity.setupSpinner" + e.getMessage());
+        }
+    }
+
     // 버튼 리스너 설정
-    private void setupListeners(){
+    private void setupListeners() throws Exception{
         // 더보기 리스너 설정
         Button button_more = findViewById(R.id.button_more);
         button_more.setOnClickListener(new OnMoreListener());
@@ -52,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 식당 타입 스피너 리스너 설정
-    private void setupSpinner(){
+    private void setupSpinner() throws Exception{
         Spinner spinner_cafeteriaType = findViewById(R.id.spinner_cafeteriaType);
         String[] items = CafeteriaType.getStringArray();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, items);
@@ -62,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 리사이클러 뷰 설정
-    private void setupRecyclerView(){
+    private void setupRecyclerView() throws Exception{
         RecyclerView recyclerView_menuView = findViewById(R.id.recyclerView_menuView);
         recyclerAdapter = new CafeteriaRecyclerAdapter(this);
         recyclerView_menuView.setAdapter(recyclerAdapter);

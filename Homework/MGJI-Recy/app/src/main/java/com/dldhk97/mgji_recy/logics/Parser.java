@@ -35,7 +35,7 @@ public class Parser{
         // url 설정
         String url = cafeteriaType.getURL();
 
-        // 오늘 날짜로 설정(다른날짜도 가능하게 하면?)
+        // 해당 날짜로 설정
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         url += "mode=menuList&srDt=" + format.format(date.getTime());
 

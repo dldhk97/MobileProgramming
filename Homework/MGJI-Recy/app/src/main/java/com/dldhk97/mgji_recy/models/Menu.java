@@ -6,11 +6,12 @@ import com.dldhk97.mgji_recy.UIHandler;
 import com.dldhk97.mgji_recy.enums.CafeteriaType;
 import com.dldhk97.mgji_recy.enums.MealTimeType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 // 어떤 날의 조식/중식/석식 중 하나의 식단. 여러 음식을 포함함.
-public class Menu {
+public class Menu implements Serializable {
     private Calendar date;                      // 날짜
     private CafeteriaType cafeteriaType;    // 식당
     private MealTimeType mealTimeType;      // 조식/중식/석식
@@ -73,7 +74,7 @@ public class Menu {
             return sb.toString();
         }
         catch(Exception e){
-            UIHandler.getInstance().showToast("[Menu.toString]\n" + e.getMessage());
+            UIHandler.getInstance().showAlert("[Menu.toString]\n" + e.getMessage());
         }
         return super.toString();
     }

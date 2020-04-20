@@ -11,4 +11,8 @@
     <string name="about_description">금오공과대학교 홈페이지에서 식단 목록을 파싱해오는 어플리케이션입니다.\n
         식당 선택 시 이번주와 저번주의 식단을 가져오며, 아래의 더보기 버튼 클릭 시 이전 식단을 일주일치 더 가져옵니다.
     </string>
+
+    <string name="popup_imageView_icon">메뉴 이미지</string>
+    <string name="popup_button_link_text">웹페이지 바로가기</string>
+
 </resources>

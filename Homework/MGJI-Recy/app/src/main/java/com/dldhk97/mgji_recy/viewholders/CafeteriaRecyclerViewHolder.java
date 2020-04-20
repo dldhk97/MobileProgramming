@@ -62,7 +62,8 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder impleme
         // 음식 간단히 표시
         StringBuilder foodsStr = new StringBuilder();
         for(String food : menu.getFoods()){
-            if(food.startsWith("[") || food.startsWith("*") || food.startsWith("-")){   // 식사시간, 가격은 패스한다.
+            if(food.startsWith("[") || food.startsWith("*") || food.startsWith("-")
+                    || food.endsWith("]") || food.startsWith("식당 안에서 식사는") || food.startsWith("금지합니다.")){   // 식사시간, 가격은 패스한다.
                 continue;
             }
             foodsStr.append(food + " ");

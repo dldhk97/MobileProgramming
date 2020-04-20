@@ -44,4 +44,22 @@ public class UIHandler {
             }
         });
     }
+
+    public void showAlert(final String title, final String msg){
+        final AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.setTitle(title);
+        alert.setMessage(msg);
+        mainActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alert.show();
+            }
+        });
+    }
 }

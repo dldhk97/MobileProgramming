@@ -2,5 +2,14 @@
     <string name="app_name">MGJI-Recy</string>
     <string name="developer_name">지명근</string>
     <string name="developer_id">20161185</string>
-    <string name="button_refresh_text">새로고침</string>
+    <string name="button_more_text">더보기</string>
+    <string name="textView_date_default">1997.04.28</string>
+    <string name="textView_mealTime_default">알수없음</string>
+    <string name="textView_menus_default">알 수 없는 메뉴</string>
+    <string name="button_about_text">대하여</string>
+    <string name="about_title">금오공대 식단표 파서</string>
+    <string name="about_description">금오공과대학교 홈페이지에서 식단 목록을 파싱해오는 어플리케이션입니다.\n
+        식당 선택 시 이번주와 저번주의 식단을 가져오며, 아래의 더보기 버튼 클릭 시 이전 식단을 일주일치 더 가져옵니다.\n
+        * 더보기는 7번까지만 가능합니다.
+    </string>
 </resources>

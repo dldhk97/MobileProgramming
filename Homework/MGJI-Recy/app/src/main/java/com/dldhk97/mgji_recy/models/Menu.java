@@ -43,6 +43,10 @@ public class Menu {
         return foods.get(index);
     }
 
+    public ArrayList<String> getFoods(){
+        return foods;
+    }
+
     public int getCount(){
         return foods.size();
     }

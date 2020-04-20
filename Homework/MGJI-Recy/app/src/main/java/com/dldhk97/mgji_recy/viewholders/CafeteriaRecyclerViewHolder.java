@@ -28,13 +28,30 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(Menu menu)throws Exception{
-        //            imageView_icon.setImageResource(R.id.);                       // 아이콘 설정
+        // 아이콘 설정
+        //            imageView_icon.setImageResource(R.id.);
+
         // 날짜 설정
         SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");
         String dateStr = format.format(menu.getDate().getTime());
-        textView_date.setText(dateStr);               // 날짜 설정
-        textView_mealTime.setText(menu.getMealTimeType().toString());   // 식사시간 설정
-        textView_menus.setText("음식1");
+        textView_date.setText(dateStr);
+
+        // 식사시간 설정
+        textView_mealTime.setText(menu.getMealTimeType().toString());
+
+        // 음식 간단히 표시
+        StringBuilder foodsStr = new StringBuilder();
+        for(String food : menu.getFoods()){
+            if(food.startsWith("[") || food.startsWith("*") || food.startsWith("-")){   // 식사시간, 가격은 패스한다.
+                continue;
+            }
+            foodsStr.append(food + " ");
+            if(foodsStr.length() > 20){
+                foodsStr.append("...");
+                break;
+            }
+        }
+        textView_menus.setText(foodsStr.toString());
 
     }
 }

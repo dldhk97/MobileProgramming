@@ -18,12 +18,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Parser{
     private ArrayList<Menu> resultArr;
 
-    public ArrayList<Menu> parse(CafeteriaType cafeteriaType) throws Exception{
+    public ArrayList<Menu> parse(CafeteriaType cafeteriaType, Calendar date) throws Exception{
         if(cafeteriaType == CafeteriaType.UNKNOWN){
             throw new MyException(ExceptionType.UNKNOWN_CAFETERIA_TYPE, "Unknown current cafeteria type");
         }
@@ -32,7 +34,6 @@ public class Parser{
         String url = cafeteriaType.getURL();
 
         // 오늘 날짜로 설정(다른날짜도 가능하게 하면?)
-        Calendar date = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         url += "mode=menuList&srDt=" + format.format(date.getTime());
 
@@ -42,8 +43,8 @@ public class Parser{
             date.add(Calendar.DATE, -1);
         };
 
-       // 파싱
-        ParseThread pt = new ParseThread(url, date, cafeteriaType);
+       // 학교 홈페이지에서 파싱
+        ParseThread pt = new ParseThread(url, cafeteriaType);
         try{
             pt.setOnParseCompleteReceivedEvent(new ParseCompleteListener());
             Thread thread = new Thread(pt);
@@ -51,8 +52,25 @@ public class Parser{
             thread.join();
         }
         catch(Exception e){
-
+            throw new MyException(ExceptionType.PARSE_FAILED, "Parse failed.");
         }
+
+        if(resultArr == null){
+//            Menu empty = new Menu(date, cafeteriaType, MealTimeType.UNKNOWN);
+//            empty.addFood("등록된 메뉴가 없습니다.");
+//            resultArr = new ArrayList<>();
+//            resultArr.add(empty);
+//            return resultArr;
+            return new ArrayList<>();
+        }
+
+        // 날짜 역순으로 정렬
+        Collections.sort(resultArr, new Comparator<Menu>() {
+            @Override
+            public int compare(Menu menu1, Menu menu2) {
+                return menu2.getDate().compareTo(menu1.getDate());
+            }
+        });
 
         return resultArr;
 
@@ -74,14 +92,12 @@ class ParseThread implements Runnable{
 
     private static final int TIMEOUT = 5000;
     private String url;
-    private Calendar date;
     private CafeteriaType cafeteriaType;
 
     private IParseCompleteListener parseCompleteListener;
 
-    public ParseThread(String url, Calendar date, CafeteriaType cafeteriaType){
+    public ParseThread(String url, CafeteriaType cafeteriaType){
         this.url = url;
-        this.date = date;
         this.cafeteriaType = cafeteriaType;
     }
 

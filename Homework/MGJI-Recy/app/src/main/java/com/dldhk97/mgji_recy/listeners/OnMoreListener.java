@@ -2,18 +2,20 @@ package com.dldhk97.mgji_recy.listeners;
 
 import android.view.View;
 
+import com.dldhk97.mgji_recy.DataController;
 import com.dldhk97.mgji_recy.UIHandler;
 
-public class OnRefreshListener implements View.OnClickListener{
+public class OnMoreListener implements View.OnClickListener{
 
-    public OnRefreshListener(){
+    public OnMoreListener(){
 
     }
 
     @Override
     public void onClick(View view) {
         try{
-            UIHandler.getInstance().showToast("메뉴 새로고침됨");
+            DataController.getInstance().more();
+            UIHandler.getInstance().showToast("식단을 더 불러왔습니다.");
         }
         catch(Exception e){
             UIHandler.getInstance().showAlert(e.getMessage());

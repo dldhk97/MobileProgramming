@@ -3,6 +3,7 @@ package com.dldhk97.mgji_recy.listeners;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.dldhk97.mgji_recy.DataController;
 import com.dldhk97.mgji_recy.MainActivity;
 import com.dldhk97.mgji_recy.UIHandler;
 import com.dldhk97.mgji_recy.enums.CafeteriaType;
@@ -11,19 +12,20 @@ public class OnCafeteriaTypeSelectedListener implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         try{
-            String toastMsg = "";
+            CafeteriaType cafeteriaType = CafeteriaType.UNKNOWN;
             switch(i){
                 case 0:
-                    toastMsg = CafeteriaType.STUDENT.toString();
+                    cafeteriaType = CafeteriaType.STUDENT;
                     break;
                 case 1:
-                    toastMsg = CafeteriaType.STAFF.toString();
+                    cafeteriaType = CafeteriaType.STAFF;
                     break;
                 case 2:
-                    toastMsg = CafeteriaType.SNACKBAR.toString();
+                    cafeteriaType = CafeteriaType.SNACKBAR;
                     break;
             }
-            UIHandler.getInstance().showToast(toastMsg + " 선택됨");
+            DataController.getInstance().currentCafeteriaType = cafeteriaType;
+            DataController.getInstance().updateData(cafeteriaType);
         }
         catch(Exception e){
             UIHandler.getInstance().showAlert(e.getMessage());

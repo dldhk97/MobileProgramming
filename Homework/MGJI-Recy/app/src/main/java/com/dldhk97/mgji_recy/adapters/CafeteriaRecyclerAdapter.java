@@ -21,13 +21,9 @@ import java.util.ArrayList;
 
 public class CafeteriaRecyclerAdapter extends RecyclerView.Adapter<CafeteriaRecyclerViewHolder> {
     private LayoutInflater inflater;
-    private DataController dataController;
 
-    private CafeteriaType currentType = CafeteriaType.STUDENT;
-
-    public CafeteriaRecyclerAdapter(Context context, DataController dataController){
+    public CafeteriaRecyclerAdapter(Context context){
         inflater = LayoutInflater.from(context);
-        this.dataController = dataController;
     }
 
     @NonNull
@@ -41,15 +37,15 @@ public class CafeteriaRecyclerAdapter extends RecyclerView.Adapter<CafeteriaRecy
     public void onBindViewHolder(@NonNull CafeteriaRecyclerViewHolder holder, int position) {
         try{
             ArrayList<Menu> targetArray;
-            switch (currentType){
+            switch (DataController.getInstance().currentCafeteriaType){
                 case STUDENT:
-                    targetArray = dataController.getStudentMenus();
+                    targetArray = DataController.getInstance().getStudentMenus();
                     break;
                 case STAFF:
-                    targetArray = dataController.getStaffMenus();
+                    targetArray = DataController.getInstance().getStaffMenus();
                     break;
                 case SNACKBAR:
-                    targetArray = dataController.getSnackbarMenus();
+                    targetArray = DataController.getInstance().getSnackbarMenus();
                     break;
                 default:
                     throw new MyException(ExceptionType.UNKNOWN_CAFETERIA_TYPE, "Unknown current cafeteria type");
@@ -66,18 +62,18 @@ public class CafeteriaRecyclerAdapter extends RecyclerView.Adapter<CafeteriaRecy
     @Override
     public int getItemCount() {
         try{
-            switch (currentType){
+            switch (DataController.getInstance().currentCafeteriaType){
                 case STUDENT:
-                    if(dataController.getStudentMenus() != null)
-                        return dataController.getStudentMenus().size();
+                    if(DataController.getInstance().getStudentMenus() != null)
+                        return DataController.getInstance().getStudentMenus().size();
                     break;
                 case STAFF:
-                    if(dataController.getStaffMenus() != null)
-                        return dataController.getStaffMenus().size();
+                    if(DataController.getInstance().getStaffMenus() != null)
+                        return DataController.getInstance().getStaffMenus().size();
                     break;
                 case SNACKBAR:
-                    if(dataController.getSnackbarMenus() != null)
-                        return dataController.getSnackbarMenus().size();
+                    if(DataController.getInstance().getSnackbarMenus() != null)
+                        return DataController.getInstance().getSnackbarMenus().size();
                     break;
             }
         }

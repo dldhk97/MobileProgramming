@@ -43,7 +43,7 @@ public class Parser{
             date.add(Calendar.DATE, -1);
         };
 
-       // 학교 홈페이지에서 파싱
+        // 학교 홈페이지에서 파싱
         ParseThread pt = new ParseThread(url, cafeteriaType);
         try{
             pt.setOnParseCompleteReceivedEvent(new ParseCompleteListener());
@@ -94,9 +94,10 @@ public class Parser{
 // 파싱용 스레드
 class ParseThread implements Runnable{
 
-    private static final int TIMEOUT = 3000;
+    private static final int TIMEOUT = 2000;
     private String url;
     private CafeteriaType cafeteriaType;
+    private final int TRY_CNT = 2;
 
     private IParseCompleteListener parseCompleteListener;
 
@@ -112,7 +113,25 @@ class ParseThread implements Runnable{
         try{
             Connection connection = Jsoup.connect(url);
             connection.timeout(TIMEOUT);
-            Document doc = connection.get();
+            Document doc = null;
+
+            // n번까지 파싱 시도해보고 안되면 실패
+            int tryCnt = TRY_CNT;
+            while(tryCnt-- > 0){
+                try{
+                    doc = connection.get();
+                    if(doc != null)
+                        break;
+                }
+                catch (Exception e){
+                    Log.d("[ParseThread.run]\n","connection.get()\n" + e.getMessage());
+                    if(tryCnt <= 0){
+                        parseCompleteListener.onParseComplete(ExceptionType.PARSE_FAILED, resultArr);
+                        return;
+                    }
+                }
+            }
+
 
             // 등록된 메뉴가 있는지 체크
             Elements existCheck = doc.select("table > tbody > td");

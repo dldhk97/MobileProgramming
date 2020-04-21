@@ -56,7 +56,7 @@ public class Parser{
         }
 
         if(resultException != null){
-            throw new MyException(resultException, "금오공과대학교 홈페이지에 연결하는데 실패했습니다!");
+            throw new MyException(resultException, "식단표를 파싱하는데 실패했습니다!");
         }
 
         if(resultArr == null){
@@ -94,7 +94,7 @@ public class Parser{
 // 파싱용 스레드
 class ParseThread implements Runnable{
 
-    private static final int TIMEOUT = 1000;
+    private static final int TIMEOUT = 3000;
     private String url;
     private CafeteriaType cafeteriaType;
 

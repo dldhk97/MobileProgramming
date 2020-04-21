@@ -28,10 +28,15 @@ public class PopupActivity extends Activity {
         Intent intent = getIntent();
         menu = (Menu)intent.getSerializableExtra("menu");
 
-        setupUiComponents();
+        try{
+            setupUiComponents();
+        }
+        catch (Exception e){
+            UIHandler.getInstance().showAlert("[PopupActivity.onCreate]\n" + e.getMessage());
+        }
     }
 
-    private void setupUiComponents(){
+    private void setupUiComponents() throws Exception{
         //날짜 설정
         TextView textView_title = findViewById(R.id.popup_textView_title);
         SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");

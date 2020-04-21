@@ -29,8 +29,14 @@ public class CafeteriaRecyclerAdapter extends RecyclerView.Adapter<CafeteriaRecy
     @NonNull
     @Override
     public CafeteriaRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.item_menu, parent, false);
-        return new CafeteriaRecyclerViewHolder(itemView, this);
+        try{
+            View itemView = inflater.inflate(R.layout.item_menu, parent, false);
+            return new CafeteriaRecyclerViewHolder(itemView, this);
+        }
+        catch (Exception e){
+            UIHandler.getInstance().showAlert("[CafeteriaRecyclerViewHolder.onCreateViewHolder]\n" + e.getMessage());
+        }
+        return null;
     }
 
     @Override

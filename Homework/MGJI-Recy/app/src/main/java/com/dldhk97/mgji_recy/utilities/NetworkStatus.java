@@ -13,7 +13,7 @@ import com.dldhk97.mgji_recy.enums.NetworkStatusType;
 
 public class NetworkStatus {
 
-    public static NetworkStatusType checkStatus(){
+    public static NetworkStatusType checkStatus() throws Exception{
         int sdk = Build.VERSION.SDK_INT;
         if(sdk >= Build.VERSION_CODES.M){
             return getConnectivityStatus();

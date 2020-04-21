@@ -112,7 +112,6 @@ public class DataController {
             throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
         }
 
-
         Calendar date = Calendar.getInstance();
         date.add(Calendar.DATE, moreOffset);
         moreOffset -= 7;
@@ -124,12 +123,24 @@ public class DataController {
         // 식당 유형에 맞게 합체
         switch (currentCafeteriaType){
             case STUDENT:
+                if(studentMenus == null) {
+                    updateData(currentCafeteriaType);
+                    return;
+                }
                 studentMenus.addAll(parsedArr);
                 break;
             case STAFF:
+                if(staffMenus == null) {
+                    updateData(currentCafeteriaType);
+                    return;
+                }
                 staffMenus.addAll(parsedArr);
                 break;
             case SNACKBAR:
+                if(snackbarMenus == null) {
+                    updateData(currentCafeteriaType);
+                    return;
+                }
                 snackbarMenus.addAll(parsedArr);
                 break;
             default:

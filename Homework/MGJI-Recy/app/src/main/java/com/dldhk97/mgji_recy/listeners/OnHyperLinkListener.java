@@ -21,7 +21,7 @@ public class OnHyperLinkListener implements View.OnClickListener {
             MainActivity.getInstance().startActivity(intent);
         }
         catch (Exception e){
-            UIHandler.getInstance().showAlert("[OnHyperLinkListener.onClick]" + e.getMessage());
+            UIHandler.getInstance().showAlert("[OnHyperLinkListener.onClick]\n" + e.getMessage());
         }
     }
 }

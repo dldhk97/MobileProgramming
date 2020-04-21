@@ -28,7 +28,6 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder impleme
     public CafeteriaRecyclerViewHolder(@NonNull View itemView, CafeteriaRecyclerAdapter adapter) {
         super(itemView);
         try{
-
             this.imageView_icon = itemView.findViewById(R.id.imageView_icon);
             this.textView_date = itemView.findViewById(R.id.popup_textView_title);
             this.textView_mealTime = itemView.findViewById(R.id.textView_mealTime);

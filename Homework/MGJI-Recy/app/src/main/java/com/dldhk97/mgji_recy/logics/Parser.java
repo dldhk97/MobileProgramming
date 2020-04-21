@@ -166,7 +166,7 @@ class ParseThread implements Runnable{
             parseCompleteListener.onParseComplete(resultArr);
         }
         catch(Exception e){
-            Log.d("[ParseThread.run]", "WHAT?\n" + e.getMessage());
+            Log.d("[ParseThread.run]\n", e.getMessage());
         }
 
     }

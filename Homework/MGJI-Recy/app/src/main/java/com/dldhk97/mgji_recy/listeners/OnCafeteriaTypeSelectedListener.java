@@ -28,7 +28,7 @@ public class OnCafeteriaTypeSelectedListener implements AdapterView.OnItemSelect
             DataController.getInstance().updateData(cafeteriaType);
         }
         catch(Exception e){
-            UIHandler.getInstance().showAlert(e.getMessage());
+            UIHandler.getInstance().showAlert("[OnCafeteriaTypeSelectedListener.onItemSelected]\n" + e.getMessage());
         }
     }
 

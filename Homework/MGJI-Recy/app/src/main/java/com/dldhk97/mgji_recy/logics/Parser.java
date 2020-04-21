@@ -132,12 +132,12 @@ class ParseThread implements Runnable{
             for(Element menuHtml : menuListHtml){
 
                 // 식사시간 알아내기
-                String mealTimeStr = menuHtml.select("p").get(0).text();
                 MealTimeType mealTimeType = MealTimeType.UNKNOWN;
                 if(this.cafeteriaType == CafeteriaType.SNACKBAR){   // 분식이면 식사시간을 일품요리로 고정
                     mealTimeType = MealTimeType.ONECOURSE;
                 }
                 else{
+                    String mealTimeStr = menuHtml.select("p").get(0).text();
                     mealTimeType = MealTimeType.strToValue(mealTimeStr);
                 }
 
@@ -173,7 +173,7 @@ class ParseThread implements Runnable{
             parseCompleteListener.onParseComplete(null, resultArr);
         }
         catch(Exception e){
-            Log.d("[ParseThread.run]\n", e.getMessage());
+            Log.d("[ParseThread.run]\n","Parse Failed\n" + e.getMessage());
             parseCompleteListener.onParseComplete(ExceptionType.PARSE_FAILED, resultArr);
         }
 

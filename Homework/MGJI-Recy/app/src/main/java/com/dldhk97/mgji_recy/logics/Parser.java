@@ -156,8 +156,14 @@ class ParseThread implements Runnable{
                     mealTimeType = MealTimeType.ONECOURSE;
                 }
                 else{
-                    String mealTimeStr = menuHtml.select("p").get(0).text();
-                    mealTimeType = MealTimeType.strToValue(mealTimeStr);
+                    try{
+                        String mealTimeStr = menuHtml.select("p").get(0).text();
+                        mealTimeType = MealTimeType.strToValue(mealTimeStr);
+                    }
+                    catch (Exception e){
+                        // 등록된 메뉴를 알 수 없거나 없을 때
+                        mealTimeType = MealTimeType.UNKNOWN;
+                    }
                 }
 
                 // 현재 메뉴의 날짜 설정
@@ -167,20 +173,25 @@ class ParseThread implements Runnable{
 
                 // 메뉴 객체 생성
                 Menu currentMenu = new Menu(currentMenuDate, cafeteriaType, mealTimeType);
+                if(mealTimeType != MealTimeType.UNKNOWN){
+                    // 음식 파싱 후 메뉴에 삽입
+                    Elements foodDetailHtml = menuHtml.select("ul > li");
+                    for(Element foodElemHtml : foodDetailHtml){
+                        String str = foodElemHtml.text();
+                        currentMenu.addFood(str);
+                    }
 
-                // 음식 파싱 후 메뉴에 삽입
-                Elements foodDetailHtml = menuHtml.select("ul > li");
-                for(Element foodElemHtml : foodDetailHtml){
-                    String str = foodElemHtml.text();
-                    currentMenu.addFood(str);
+                    // 파싱된 메뉴 있을때만 사진 설정
+                    if(currentMenu.getFoods().size() > 0 && !currentMenu.getFood(0).contains("식당 운영 없음")){
+                        // 사진 대충 설정
+                        int offset = new Random().nextInt(6);
+                        int imgId = R.drawable.food0 + offset;
+                        currentMenu.setImageId(imgId);
+                    }
                 }
 
-                // 파싱된 메뉴 있을때만 사진 설정
-                if(currentMenu.getFoods().size() > 0 && !currentMenu.getFood(0).contains("식당 운영 없음")){
-                    // 사진 대충 설정
-                    int offset = new Random().nextInt(6);
-                    int imgId = R.drawable.food0 + offset;
-                    currentMenu.setImageId(imgId);
+                if(currentMenu.getFoods().size() <= 0){
+                    currentMenu.addFood("등록된 메뉴가 없습니다.");
                 }
 
                 //전달할 배열에 추가

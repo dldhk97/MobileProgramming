@@ -35,6 +35,8 @@ public enum MealTimeType {
                 return MainActivity.getInstance().getResources().getStringArray(R.array.mealTimeType)[2];
             case ONECOURSE:
                 return MainActivity.getInstance().getResources().getStringArray(R.array.mealTimeType)[3];
+            case UNKNOWN:
+                return "알수없음";
             default:
                 return super.toString();
         }

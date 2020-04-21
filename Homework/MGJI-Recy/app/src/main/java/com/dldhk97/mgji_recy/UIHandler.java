@@ -1,6 +1,7 @@
 package com.dldhk97.mgji_recy;
 
 import android.content.DialogInterface;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,47 +20,62 @@ public class UIHandler {
     }
 
     public void showToast(final String msg){
-        mainActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast toast = Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+        try{
+            mainActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast toast = Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+        }
+        catch (Exception e){
+            Log.d("[UIHandler.showToast]", e.getMessage());
+        }
     }
 
     public void showAlert(final String msg){
-        final AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alert.setMessage(msg);
-        mainActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                alert.show();
-            }
-        });
+        try{
+            final AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage(msg);
+            mainActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    alert.show();
+                }
+            });
+        }
+        catch (Exception e){
+            Log.d("[UIHandler.showAlert]", e.getMessage());
+        }
     }
 
     public void showAlert(final String title, final String msg){
-        final AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alert.setTitle(title);
-        alert.setMessage(msg);
-        mainActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                alert.show();
-            }
-        });
+        try{
+            final AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setTitle(title);
+            alert.setMessage(msg);
+            mainActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    alert.show();
+                }
+            });
+        }
+        catch (Exception e){
+            Log.d("[UIHandler.showAlert]", e.getMessage());
+        }
     }
 }

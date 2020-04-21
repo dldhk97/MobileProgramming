@@ -6,5 +6,6 @@ public enum ExceptionType{
     PARSE_FAILED,
     EMPTY_PARSING,
     MORE_OFFSET_MAX,
+    NETWORK_DISCONNECTED,
     UNKNOWN
 }

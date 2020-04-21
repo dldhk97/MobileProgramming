@@ -2,8 +2,10 @@ package com.dldhk97.mgji_recy;
 
 import com.dldhk97.mgji_recy.enums.CafeteriaType;
 import com.dldhk97.mgji_recy.enums.ExceptionType;
+import com.dldhk97.mgji_recy.enums.NetworkStatusType;
 import com.dldhk97.mgji_recy.logics.Parser;
 import com.dldhk97.mgji_recy.models.Menu;
+import com.dldhk97.mgji_recy.utilities.NetworkStatus;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +18,7 @@ public class DataController {
     private ArrayList<Menu> snackbarMenus;
 
     public CafeteriaType currentCafeteriaType = CafeteriaType.STUDENT;
+    public boolean isOfflineMode = false;
 
     private int moreOffset = -7;
     private final int MAX_OFFSET = -105;
@@ -55,6 +58,9 @@ public class DataController {
 
     public void updateData(CafeteriaType cafeteriaType){
         try{
+            if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
+                throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
+            }
             Calendar date = Calendar.getInstance();
             moreOffset = -7;
             
@@ -84,12 +90,9 @@ public class DataController {
                     throw new MyException(ExceptionType.UNKNOWN_CAFETERIA_TYPE, "Unknown current cafeteria type");
             }
 
-            // 저번주거 불러옴
-            more();
-            // 저저번주거 불러옴
-            more();
-            // 저저저번주거 불러옴
-            more();
+            more();     // 저번주거 불러옴
+            more();     // 저저번주거 불러옴
+            more();     // 저저저번주거 불러옴
 
             //데이터 변했다고 알려줌
             MainActivity.getInstance().recyclerAdapter.notifyDataSetChanged();
@@ -104,6 +107,12 @@ public class DataController {
         if(moreOffset < MAX_OFFSET){
             throw new MyException(ExceptionType.MORE_OFFSET_MAX, "더 이상은 불러올 수 없습니다.");
         }
+
+        if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
+            throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
+        }
+
+
         Calendar date = Calendar.getInstance();
         date.add(Calendar.DATE, moreOffset);
         moreOffset -= 7;

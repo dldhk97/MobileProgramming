@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Holo.Light.Dialog" />       <!-- 팝업 액티비티를 위함 -->
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />      <!-- 인터넷 연결을 위함 -->
+    <uses-permission android:name="android.permission.INTERNET" />                  <!-- 인터넷 연결을 위함 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />      <!-- 인터넷 연결 확인을 위함 -->
 </manifest>

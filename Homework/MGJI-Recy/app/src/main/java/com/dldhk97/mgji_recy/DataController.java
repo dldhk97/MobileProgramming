@@ -6,6 +6,7 @@ import com.dldhk97.mgji_recy.enums.NetworkStatusType;
 import com.dldhk97.mgji_recy.logics.Parser;
 import com.dldhk97.mgji_recy.models.Menu;
 import com.dldhk97.mgji_recy.utilities.NetworkStatus;
+import com.dldhk97.mgji_recy.utilities.OfflineDataCreator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,16 +59,18 @@ public class DataController {
 
     public void updateData(CafeteriaType cafeteriaType){
         try{
-            if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
-                throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
-            }
             Calendar date = Calendar.getInstance();
             moreOffset = -7;
-            
-            Parser parser = new Parser();
+            ArrayList<Menu> parsedArr;
 
-            // 식당 유형에 맞게 파싱
-            ArrayList<Menu> parsedArr = parser.parse(cafeteriaType, date);
+            // 오프라인일 때는 오프라인 랜덤 메뉴 생성기 사용
+            if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
+                parsedArr = OfflineDataCreator.getRndMenuList(date,7, currentCafeteriaType);
+            }
+            else{
+                // 온라인일 때는 파싱
+                parsedArr = new Parser().parse(cafeteriaType, date);
+            }
 
             // 기존 리스트 클리어하고, 식당 유형에 맞게 삽입.
             switch (cafeteriaType){
@@ -108,17 +111,18 @@ public class DataController {
             throw new MyException(ExceptionType.MORE_OFFSET_MAX, "더 이상은 불러올 수 없습니다.");
         }
 
-        if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
-            throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
-        }
-
+        ArrayList<Menu> parsedArr;
         Calendar date = Calendar.getInstance();
         date.add(Calendar.DATE, moreOffset);
         moreOffset -= 7;
 
-        Parser parser = new Parser();
-
-        ArrayList<Menu> parsedArr = parser.parse(currentCafeteriaType, date);
+        if(NetworkStatus.checkStatus() != NetworkStatusType.CONNECTED){
+            parsedArr = OfflineDataCreator.getRndMenuList(date,7, currentCafeteriaType);
+//            throw new MyException(ExceptionType.NETWORK_DISCONNECTED, "인터넷 연결을 확인해주세요!");
+        }
+        else{
+            parsedArr = new Parser().parse(currentCafeteriaType, date);
+        }
 
         // 식당 유형에 맞게 합체
         switch (currentCafeteriaType){

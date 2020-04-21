@@ -18,4 +18,32 @@
         <item>https://kumoh.ac.kr/ko/restaurant02.do?</item>        <!-- 교직원식당 -->
         <item>https://kumoh.ac.kr/ko/restaurant04.do?</item>        <!-- 분식당 -->
     </string-array>
+
+    <string-array name="rndMenuList">
+        <item>닭볶음탕</item>
+        <item>돼지국밥</item>
+        <item>소고기국밥</item>
+        <item>순대국밥</item>
+        <item>배추김치</item>
+        <item>무김치</item>
+        <item>무말랭이</item>
+        <item>된장찌개</item>
+        <item>흰밥</item>
+        <item>검은밥</item>
+        <item>맛김</item>
+        <item>삼겹살</item>
+        <item>부추전</item>
+        <item>부침개</item>
+        <item>해물탕</item>
+        <item>닭계장</item>
+        <item>볶음밥</item>
+        <item>라면</item>
+        <item>미역국</item>
+        <item>삼계탕</item>
+        <item>호박죽</item>
+        <item>마른오징어</item>
+        <item>오징어채</item>
+        <item>짜장면</item>
+    </string-array>
+
 </resources>

@@ -8,6 +8,7 @@ import com.dldhk97.mgji_recy.enums.CafeteriaType;
 import com.dldhk97.mgji_recy.enums.ExceptionType;
 import com.dldhk97.mgji_recy.enums.MealTimeType;
 import com.dldhk97.mgji_recy.models.Menu;
+import com.dldhk97.mgji_recy.utilities.DateUtility;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,17 +16,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Random;
 
 public class Parser{
     private ArrayList<Menu> resultArr;
+    private ExceptionType resultException;
 
     public ArrayList<Menu> parse(CafeteriaType cafeteriaType, Calendar date) throws Exception{
         if(cafeteriaType == CafeteriaType.UNKNOWN){
@@ -36,8 +35,7 @@ public class Parser{
         String url = cafeteriaType.getURL();
 
         // 해당 날짜로 설정
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        url += "mode=menuList&srDt=" + format.format(date.getTime());
+        url += "mode=menuList&srDt=" + DateUtility.DateToString(date, '-');
 
         // 오늘이 일요일이면 하루 뺀다.
         // 일요일이면 웹페이지에서 하루 넘어가기 때문임.
@@ -57,6 +55,10 @@ public class Parser{
             throw new MyException(ExceptionType.PARSE_FAILED, "Parse failed.");
         }
 
+        if(resultException != null){
+            throw new MyException(resultException, "금오공과대학교 홈페이지에 연결하는데 실패했습니다!");
+        }
+
         if(resultArr == null){
             return new ArrayList<>();
         }
@@ -70,7 +72,6 @@ public class Parser{
         });
 
         return resultArr;
-
     }
 
     // 데이터 수신을 위한 리스너
@@ -78,8 +79,14 @@ public class Parser{
 
         // 데이터 수신
         @Override
-        public void onParseComplete(ArrayList<Menu> parsedArr) {
-            resultArr = parsedArr;
+        public void onParseComplete(ExceptionType exceptionType, ArrayList<Menu> parsedArr) {
+            if(exceptionType != null){
+                resultArr = null;
+                resultException = exceptionType;
+            }
+            else{
+                resultArr = parsedArr;
+            }
         }
     }
 }
@@ -87,7 +94,7 @@ public class Parser{
 // 파싱용 스레드
 class ParseThread implements Runnable{
 
-    private static final int TIMEOUT = 5000;
+    private static final int TIMEOUT = 1000;
     private String url;
     private CafeteriaType cafeteriaType;
 
@@ -117,7 +124,7 @@ class ParseThread implements Runnable{
             Elements startDateHtml = doc.select("fieldset > div > div > p");
             String startDateStr = startDateHtml.get(0).text().replace("\t","").replace("\n","").replace("\r","");
             startDateStr = startDateStr.split("~")[0].trim();
-            Calendar startDate = StringToDate(startDateStr);
+            Calendar startDate = DateUtility.StringToDate(startDateStr);
 
             // 이번 주 모든 메뉴 겟
             Elements menuListHtml = doc.select("table > tbody > tr > td");
@@ -163,22 +170,16 @@ class ParseThread implements Runnable{
             }
 
             // 파싱 완료 알리고 배열 전달
-            parseCompleteListener.onParseComplete(resultArr);
+            parseCompleteListener.onParseComplete(null, resultArr);
         }
         catch(Exception e){
             Log.d("[ParseThread.run]\n", e.getMessage());
+            parseCompleteListener.onParseComplete(ExceptionType.PARSE_FAILED, resultArr);
         }
 
     }
 
-    // 문자열을 Calender로 변환
-    private Calendar StringToDate(String str) throws Exception{
-        DateFormat formmater = new SimpleDateFormat("yyyy.MM.dd");
-        Date date = formmater.parse(str);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar;
-    }
+
 
     // 데이터 전달을 위한 리스너 설정
     public void setOnParseCompleteReceivedEvent(IParseCompleteListener listener){
@@ -187,6 +188,6 @@ class ParseThread implements Runnable{
 
     // 데이터 전달을 위한 인터페이스
     public interface IParseCompleteListener {
-        void onParseComplete(ArrayList<Menu> parsedArr);
+        void onParseComplete(ExceptionType exceptionType, ArrayList<Menu> parsedArr);
     }
 }

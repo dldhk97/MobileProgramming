@@ -14,8 +14,7 @@ import com.dldhk97.mgji_recy.R;
 import com.dldhk97.mgji_recy.UIHandler;
 import com.dldhk97.mgji_recy.adapters.CafeteriaRecyclerAdapter;
 import com.dldhk97.mgji_recy.models.Menu;
-
-import java.text.SimpleDateFormat;
+import com.dldhk97.mgji_recy.utilities.DateUtility;
 
 public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ImageView imageView_icon;
@@ -51,8 +50,7 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder impleme
         imageView_icon.setImageResource(imageId);
 
         // 날짜 설정
-        SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.dd");
-        String dateStr = format.format(menu.getDate().getTime());
+        String dateStr = DateUtility.DateToString(menu.getDate(), '.');
         textView_date.setText(dateStr);
 
         // 식사시간 설정
@@ -62,7 +60,7 @@ public class CafeteriaRecyclerViewHolder extends RecyclerView.ViewHolder impleme
         StringBuilder foodsStr = new StringBuilder();
         for(String food : menu.getFoods()){
             if(food.startsWith("[") || food.startsWith("*") || food.startsWith("-")
-                    || food.endsWith("]") || food.startsWith("식당 안에서 식사는") || food.startsWith("금지합니다.")){   // 식사시간, 가격은 패스한다.
+                    || food.endsWith("]") || food.contains("식당 안에서 식사는") || food.contains("금지합니다")){   // 식사시간, 가격은 패스한다.
                 continue;
             }
             foodsStr.append(food + " ");

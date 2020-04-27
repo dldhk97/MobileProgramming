@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MGJI-Sensor</string>
+    <string name="developer_name">지명근</string>
+    <string name="developer_id">20161185</string>
+    <string name="item_textView_sensorName_default">센서이름</string>
+    <string name="item_textView_sensorType_default">센서타입</string>
 </resources>

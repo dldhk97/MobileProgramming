@@ -3,4 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="item_textView_sensorName_color">#7f6cd3</color>
+    <color name="item_textView_sensorType_color">#705a87</color>
+    <color name="item_background_color">#f2f2f2</color>
+    <color name="item_textView_sensorName_color_alt">#ff8101</color>
+    <color name="item_textView_sensorType_color_alt">#f5c101</color>
+    <color name="item_background_color_alt">#5a5b5b</color>
 </resources>

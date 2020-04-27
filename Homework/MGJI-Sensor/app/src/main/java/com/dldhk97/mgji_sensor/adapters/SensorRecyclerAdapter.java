@@ -2,7 +2,6 @@ package com.dldhk97.mgji_sensor.adapters;
 
 import android.content.Context;
 import android.hardware.Sensor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,13 +38,10 @@ public class SensorRecyclerAdapter extends RecyclerView.Adapter<SensorRecyclerVi
         return null;
     }
 
-    int test = 0;
     @Override
     public void onBindViewHolder(@NonNull SensorRecyclerViewHolder holder, int position) {
         try{
             holder.onBind(sensors.get(position));
-            Log.d("a",String.valueOf(test) + "pos : "+ String.valueOf(position));
-            test++;
         }
         catch(Exception e){
             UIHandler.getInstance().showToast("[Adapter.onBindViewHolder]\n" + e.getMessage());

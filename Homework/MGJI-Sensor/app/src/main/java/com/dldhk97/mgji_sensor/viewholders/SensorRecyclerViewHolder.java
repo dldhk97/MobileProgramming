@@ -81,7 +81,7 @@ public class SensorRecyclerViewHolder extends RecyclerView.ViewHolder implements
         // 센서명 표시
         textView_sensorName.setText(sensorName);
 
-        // 센서타입 표시?
+        // 센서타입 표시
         textView_sensorType.setText(sensorType);
 
     }

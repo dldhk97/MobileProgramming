@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView_menuView = findViewById(R.id.recyclerView_sensorView);
         recyclerAdapter = new SensorRecyclerAdapter(this, sensors);
-        recyclerView_menuView.setItemViewCacheSize(sensors.size());                     // 이거 해줘야지 최상단/하단 데이터가 저장됨.
+        recyclerView_menuView.setItemViewCacheSize(sensors.size());                     // 리사이클러뷰 기본 캐쉬값이 5라서, 그대로 놔두면 스크롤시 데이터 이상하게 바뀜
         recyclerView_menuView.setAdapter(recyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration =

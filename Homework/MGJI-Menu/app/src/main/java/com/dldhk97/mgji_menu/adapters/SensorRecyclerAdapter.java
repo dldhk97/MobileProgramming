@@ -1,0 +1,66 @@
+package com.dldhk97.mgji_menu.adapters;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.dldhk97.mgji_menu.ui.UIHandler;
+import com.dldhk97.mgji_menu.viewholders.SensorRecyclerViewHolder;
+import com.dldhk97.mgji_menu.R;
+
+import java.util.ArrayList;
+
+public class SensorRecyclerAdapter extends RecyclerView.Adapter<SensorRecyclerViewHolder> {
+    private LayoutInflater inflater;
+    private ArrayList<Sensor> sensors;
+
+    public SensorRecyclerAdapter(Context context, ArrayList<Sensor> sensors){
+        inflater = LayoutInflater.from(context);
+        this.sensors = sensors;
+    }
+
+    @NonNull
+    @Override
+    public SensorRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        try{
+            View itemView = inflater.inflate(R.layout.item_sensor, parent, false);
+            return new SensorRecyclerViewHolder(itemView, this);
+        }
+        catch (Exception e){
+            UIHandler.getInstance().showAlert("[CafeteriaRecyclerViewHolder.onCreateViewHolder]\n" + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull SensorRecyclerViewHolder holder, int position) {
+        try{
+            holder.onBind(sensors.get(position));
+        }
+        catch(Exception e){
+            UIHandler.getInstance().showToast("[Adapter.onBindViewHolder]\n" + e.getMessage());
+        }
+
+    }
+
+
+    @Override
+    public int getItemCount() {
+        try{
+            if(sensors != null){
+                return sensors.size();
+            }
+        }
+        catch (Exception e){
+            UIHandler.getInstance().showToast("[Adapter.getItemCount]\n" + e.getMessage());
+        }
+
+        return 0;
+    }
+}

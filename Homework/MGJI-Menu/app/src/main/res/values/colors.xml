@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="item_textView_sensorName_color">#7f6cd3</color>
+    <color name="item_textView_sensorType_color">#705a87</color>
+    <color name="item_background_color">#f2f2f2</color>
+
+    <color name="item_textView_sensorName_color_default">#Ff81F1</color>
+    <color name="item_textView_sensorType_color_default">#f5c1F1</color>
+    <color name="item_background_color_default">#5a5b5b</color>
+
+    <color name="item_textView_sensorName_color_red">#FF3101</color>
+    <color name="item_textView_sensorType_color_red">#ffA101</color>
+    <color name="item_background_color_red">#5a5b5b</color>
+
+    <color name="item_textView_sensorName_color_green">#33FF01</color>
+    <color name="item_textView_sensorType_color_green">#AAFF33</color>
+    <color name="item_background_color_green">#8F8F8F</color>
+
+    <color name="item_textView_sensorName_color_blue">#33AAFF</color>
+    <color name="item_textView_sensorType_color_blue">#AAFFFF</color>
+    <color name="item_background_color_blue">#363636</color>
+
+
+</resources>
